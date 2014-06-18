@@ -21,26 +21,7 @@ command :install do |c|
       Flavours::red '  flavours.json already exists at ' + @json_path
     else
       File.open(@json_path, 'w') do |f|
-        f.write('{
-	"Flavours" : [
-		{
-			"packageName" : "somePackageName",
-			"buildConfig" : {
-				"API_KEY" : "someApiKey",
-				"DEALER_COLOR" : "#E51919"
-			},
-			"iconUrl" : "https://someurl.com/image.png"
-		},
-		{
-			"packageName" : "somePackageName",
-			"buildConfig" : {
-				"API_KEY" : "someApiKey",
-				"DEALER_COLOR" : "#E51919"
-			},
-			"iconUrl" : "https://someurl.com/image.png"
-		},
-	]
-}')
+        f.write(Flavours::base_json_file_string)
       end
       Flavours::green '  flavours.json created' unless $nolog
     end

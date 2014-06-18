@@ -9,7 +9,6 @@ $:.push File.expand_path("../../lib", __FILE__)
 require 'flavours'
 
 HighLine.track_eof = false # Fix for built-in Ruby
-
 program :version, Flavours::VERSION
 program :description, 'One codebase. Multiple Google Play Store submission APKs with different buildConfigs, package names, icons, etc.'
 
@@ -20,5 +19,3 @@ program :help_formatter, :compact
 global_option('--dontlog') { $nolog = true }
 
 default_command :help
-
-require 'flavours/commands'

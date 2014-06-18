@@ -47,4 +47,30 @@ module Flavours
     return true
   end
 
+
+  def self.base_json_file_string
+    return '{
+	"flavours" : [
+		{
+      "flavourName" : "YourFlavor",
+			"packageName" : "somePackageName",
+			"buildConfig" : {
+				"API_KEY" : "someApiKey",
+				"DEALER_COLOR" : "#E51919"
+			},
+			"iconUrl" : "https://someurl.com/image.png"
+		},
+		{
+      "flavourName" : "YourFlavor",
+			"packageName" : "somePackageName",
+			"buildConfig" : {
+				"API_KEY" : "someApiKey",
+				"DEALER_COLOR" : "#E51919"
+			},
+			"iconUrl" : "https://someurl.com/image.png"
+		}
+	]
+}'
+  end
+
 end

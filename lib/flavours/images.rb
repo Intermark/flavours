@@ -4,7 +4,6 @@ require 'RMagick'
 include Magick
 require 'colors'
 require 'open-uri'
-require 'utilities'
 
 module Flavours
 
