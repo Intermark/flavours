@@ -50,7 +50,7 @@ command :create do |c|
       end
 
       # Create Them
-      Flavours::create @flavours
+      Flavours::create @flavours, @directory, @module
     else
       Flavours::red "\n  Module must be specified using the -m or --module option.\n"
     end
