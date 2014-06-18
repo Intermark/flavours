@@ -8,100 +8,44 @@ require 'open-uri'
 module Flavours
 
   # Images
-  def self.create_images directory, t, obj
+  def self.create_images directory, m, flavour_hash
     # Bad Params
-    if !directory || !t || !obj
+    if !directory || !flavour_hash || !m
       return false
     end
 
-    # Get Device Information
-    iPhone = obj['devices'].include? 'iPhone'
-    iPad = obj['devices'].include? 'iPad'
-
     # Resize Icons
-    resize_icons directory, t, iPhone, iPad
-
-    # Resize Launch Images
-    resize_launch_images directory, t
-
-    # Write JSON for Icon Assets
-    write_json_for_icons directory, t, iPhone, iPad
-
-    # Write JSON for Launch Assets
-    write_json_for_launch_images directory, t
-
+    resize_icons directory, m, flavour_hash
   end
 
 
   # Create & Resize Icons
-  def self.resize_icons directory, t, iPhone, iPad
+  def self.resize_icons directory, m, flavour_hash
     # Set Up
-    target = t['name']
+    name = flavour_hash['flavourName']
 
     # Get Image Information
     img_path = ''
-    if t['icon_url']
-      img_path = self.path_for_downloaded_image_from_url directory, target, t['icon_url'], 'icons'
-    elsif t['icon_path']
-      img_path = directory + '/' + t['icon_path']
+    if flavour_hash['iconUrl']
+      img_path = self.path_for_downloaded_image_from_url directory, name, flavour_hash['iconUrl'], 'icons'
     end
 
-    # Make directory
-    img_dir = make_asset_directory directory, target, '.appiconset/'
+    # Make Assets Directory
+    make_asset_directory directory, m, name
 
     # Resize
-    image_sizes = []
-    image_sizes += ['120x120', '114x114', '80x80', '58x58', '57x57', '29x29'] if iPhone
-    image_sizes += ['152x152', '144x144', '100x100', '80x80', '76x76', '72x72', '58x58', '50x50', '40x40', '29x29'] if iPad
-    image_sizes.uniq.each do |size|
+    image_sizes = ['144x144', '96x96', '72x72', '48x48']
+    drawables = ['drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
+    image_sizes.each_index do |i|
+      size = image_sizes[i]
+      drawable = drawables[i]
+      img_dir = file_path_with_drawable_name directory, drawable, m, name
       image = Image.read(img_path).first
       next unless image
-      resize_image_to_directory img_dir, image, size, 'icon'
+      resize_image_to_directory img_dir, image, size, 'ic_launcher'
     end
 
-    Flavours::green ('  - Created Icon images for ' + target) unless $nolog
-    return true
-  end
-
-
-  # Create & Resize Launch Images
-  def self.resize_launch_images directory, t
-    # Set Up
-    target = t['name']
-
-    ['launch_phone_p', 'launch_phone_l', 'launch_tablet_p', 'launch_tablet_l'].each do |key|
-      if t[key + '_url']
-        img_path = self.path_for_downloaded_image_from_url directory, key + '_' + target, t[key + '_url'], 'launch'
-      elsif t[key + '_path']
-        img_path = directory + '/' + t[key + '_path']
-      else
-        next
-      end
-
-      # Make directory
-      img_dir = make_asset_directory directory, target, '.launchimage/'
-
-      # Make resize sizes
-      sizes = []
-      if key == 'launch_phone_p'
-        sizes = ['640x1136','640x960','320x480']
-      elsif key == 'launch_phone_l'
-        sizes = ['1136x640','960x640','480x320']
-      elsif key == 'launch_tablet_p'
-        sizes = ['1536x2048','768x1024','1536x2008','768x1004']
-      elsif key == 'launch_tablet_l'
-        sizes = ['2048x1536','1024x768','2048x1496','1024x748']
-      end
-
-      # Resize Images
-      sizes.each do |size|
-        image = Image.read(img_path).first
-        return false unless image
-        resize_image_to_directory img_dir, image, size, key + '_'
-      end
-    end
-
-    Flavours::green ('  - Created Launch images for ' + target) unless $nolog
+    Flavours::green ('  - Created Icon images for ' + name) unless $nolog
     return true
   end
 
@@ -112,242 +56,7 @@ module Flavours
     new_w = Integer(sizes[0])
     new_h = Integer(sizes[1])
     image.resize_to_fill! new_w, new_h
-    image.write  directory + '/' + tag + size + '.png'
-  end
-
-
-  # Create JSON
-  def self.write_json_for_icons directory, t, iPhone, iPad
-    # Set Up
-    target = t['name']
-
-    # Make directory
-    img_dir = make_asset_directory directory, target, '.appiconset/'
-
-    # Write the JSON file
-    File.open(img_dir + '/Contents.json', 'w') do |f|
-      f.write('{ "images" : [ ')
-
-      if iPhone
-        f.write( '{ "size" : "29x29", "idiom" : "iphone", "filename" : "icon58x58.png", "scale" : "2x" }, { "size" : "40x40", "idiom" : "iphone", "filename" : "icon80x80.png", "scale" : "2x" }, { "size" : "60x60", "idiom" : "iphone", "filename" : "icon120x120.png", "scale" : "2x" }, { "size" : "29x29", "idiom" : "iphone", "filename" : "icon29x29.png", "scale" : "1x" }, { "size" : "57x57", "idiom" : "iphone", "filename" : "icon57x57.png", "scale" : "1x" }, { "size" : "57x57", "idiom" : "iphone", "filename" : "icon114x114.png", "scale" : "2x" }' + (iPad ? ',' : ''))
-      end
-
-      if iPad
-        f.write( '{ "idiom" : "ipad", "size" : "29x29", "scale" : "1x", "filename" : "icon29x29.png" }, { "idiom" : "ipad", "size" : "29x29", "scale" : "2x", "filename" : "icon58x58.png" }, { "idiom" : "ipad", "size" : "40x40", "scale" : "1x", "filename" : "icon40x40.png" }, { "idiom" : "ipad", "size" : "40x40", "scale" : "2x", "filename" : "icon80x80.png" }, { "idiom" : "ipad", "size" : "76x76", "scale" : "1x", "filename" : "icon76x76.png" }, { "idiom" : "ipad", "size" : "76x76", "scale" : "2x", "filename" : "icon152x152.png" }, { "idiom" : "ipad", "size" : "50x50", "scale" : "1x", "filename" : "icon50x50.png" }, { "idiom" : "ipad", "size" : "50x50", "scale" : "2x", "filename" : "icon100x100.png" }, { "idiom" : "ipad", "size" : "72x72", "scale" : "1x", "filename" : "icon72x72.png" }, { "idiom" : "ipad", "size" : "72x72", "scale" : "2x", "filename" : "icon144x144.png" }')
-      end
-
-      f.write(' ], "info" : { "version" : 1, "author" : "xcode" }, "properties" : { "pre-rendered" : true } }')
-    end
-
-    # Return true
-    Flavours::green ('  - Created Images.xcassets icon set for ' + target) unless $nolog
-    return true
-  end
-
-
-  # JSON for Launch Images
-  def self.write_json_for_launch_images directory, t
-    # Set Up
-    target = t['name']
-    phone_portrait = t['launch_phone_p_url'] || t['launch_phone_p_path']
-    phone_landscape = t['launch_phone_l_url'] || t['launch_phone_l_path']
-    tablet_portrait = t['launch_tablet_p_url'] || t['launch_tablet_p_path']
-    tablet_landscape = t['launch_tablet_l_url'] || t['launch_tablet_l_path']
-    return false unless phone_portrait || phone_landscape || tablet_landscape || tablet_portrait
-
-    # Make Directory
-    img_dir = make_asset_directory directory, target, '.launchimage/'
-
-    File.open(img_dir + '/Contents.json', 'w') do |f|
-      f.write('{"images" : [')
-
-      if phone_portrait
-        f.write('{
-      "orientation" : "portrait",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
-      "filename" : "launch_phone_p_640x960.png",
-      "scale" : "2x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "retina4",
-      "filename" : "launch_phone_p_640x1136.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "portrait",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "launch_phone_p_320x480.png",
-      "scale" : "1x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "launch_phone_p_640x960.png",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "subtype" : "retina4",
-      "filename" : "launch_phone_p_640x1136.png",
-      "scale" : "2x"
-    }')
-        f.write ',' if phone_landscape || tablet_portrait || tablet_landscape
-      end
-
-      if phone_landscape
-        f.write('{
-      "orientation" : "landscape",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
-      "filename" : "launch_phone_l_960x640.png",
-      "scale" : "2x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "retina4",
-      "filename" : "launch_phone_l_1136x640.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "landscape",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "launch_phone_l_480x320.png",
-      "scale" : "1x"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "launch_phone_l_960x640.png",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "subtype" : "retina4",
-      "filename" : "launch_phone_l_1136x640.png",
-      "scale" : "2x"
-    }')
-        f.write ',' if tablet_portrait || tablet_landscape
-      end
-
-      if tablet_portrait
-        f.write('{
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "filename" : "launch_tablet_p_768x1024.png",
-      "minimum-system-version" : "7.0",
-      "scale" : "1x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "filename" : "launch_tablet_p_1536x2048.png",
-      "minimum-system-version" : "7.0",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "to-status-bar",
-      "scale" : "1x",
-      "filename" : "launch_tablet_p_768x1004.png"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "scale" : "1x",
-      "filename" : "launch_tablet_p_768x1024.png"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "to-status-bar",
-      "scale" : "2x",
-      "filename" : "launch_tablet_p_1536x2008.png"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "scale" : "2x",
-      "filename" : "launch_tablet_p_1536x2048.png"
-    }')
-        f.write ',' if tablet_landscape
-      end
-
-      if tablet_landscape
-        f.write('{
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "filename" : "launch_tablet_l_1024x768.png",
-      "minimum-system-version" : "7.0",
-      "scale" : "1x"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "filename" : "launch_tablet_l_2048x1536.png",
-      "minimum-system-version" : "7.0",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "to-status-bar",
-      "scale" : "1x",
-      "filename" : "launch_tablet_l_1024x748.png"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "scale" : "1x",
-      "filename" : "launch_tablet_l_1024x768.png"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "to-status-bar",
-      "scale" : "2x",
-      "filename" : "launch_tablet_l_2048x1496.png"
-    },
-    {
-      "orientation" : "landscape",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "scale" : "2x",
-      "filename" : "launch_tablet_l_2048x1536.png"
-    }')
-      end
-
-      f.write('],"info" : {"version" : 1,"author" : "xcode"}}')
-    end
-
-    # Return true
-    Flavours::green ('  - Created Images.xcassets launch image set for ' + target) unless $nolog
-    return true
+    image.write  directory + '/' + tag + '.png'
   end
 
   # Download Image from URL
@@ -360,6 +69,23 @@ module Flavours
     end
 
     return img_path + img_file_name
+  end
+
+
+  # Asset Directory Methods
+  def self.make_asset_directory directory, m, flavour_name
+    subfolders = ['drawable-hdpi','drawable-mdpi','drawable-xhdpi','drawable-xxhdpi']
+    subfolders.each do |f|
+      FileUtils::mkdir_p file_path_with_drawable_name directory, f, m, flavour_name
+    end
+  end
+
+  def self.assets_file_path directory, m, flavour_name
+    return "#{directory}/#{m}/src/#{flavour_name}/res"
+  end
+
+  def self.file_path_with_drawable_name directory, name, m, flavour_name
+    return "#{assets_file_path directory, m, flavour_name}/#{name}"
   end
 
 end

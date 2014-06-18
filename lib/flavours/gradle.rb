@@ -8,6 +8,7 @@ module Flavours
     @flavour_string = ''
     flavours.each do |f|
       @flavour_string += gradle_string_for_flavour f
+      Flavours::create_images directory, m, f unless $nolog
       Flavours::green "  Finished: #{f['flavourName']}" unless $nolog
     end
 
