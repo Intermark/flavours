@@ -45,7 +45,7 @@ module Flavours
       resize_image_to_directory img_dir, image, size, 'ic_launcher'
     end
 
-    Flavours::green ('  - Created Icon images for ' + name) unless $nolog
+    puts '  - Created Icon images for ' + name unless $nolog
     return true
   end
 

@@ -8,8 +8,9 @@ module Flavours
     @flavour_string = ''
     flavours.each do |f|
       @flavour_string += gradle_string_for_flavour f
+      Flavours::green "  #{f['flavourName']}" unless $nolog
       Flavours::create_images directory, m, f unless $nolog
-      Flavours::green "  Finished: #{f['flavourName']}" unless $nolog
+      puts
     end
 
     set_and_save_flavours_text @flavour_string, directory, m
@@ -31,9 +32,9 @@ module Flavours
 
 
   def self.gradle_string_for_flavour flavour
-    package = "packageName \"#{flavour['packageName']}\"\n" unless flavour['packageName'] == nil
+    package = "            packageName \"#{flavour['packageName']}\"\n" unless flavour['packageName'] == nil
     buildConfig = build_config_string_for_flavour flavour
-    return "#{flavour['flavourName']} {\n#{package}#{buildConfig}}\n"
+    return "        #{flavour['flavourName']} {\n#{package}#{buildConfig}        }\n"
   end
 
 
@@ -41,7 +42,7 @@ module Flavours
     if flavour['buildConfig']
       @buildconfig = ''
       flavour['buildConfig'].each_pair do |k, v|
-        @buildconfig += "buildConfigField \"String\" , \"#{k}\" ,  \"\\\"#{v}\\\"\"\n"
+        @buildconfig += "            buildConfigField \"String\" , \"#{k}\" ,  \"\\\"#{v}\\\"\"\n"
       end
       return @buildconfig
     end
@@ -53,7 +54,7 @@ module Flavours
   def self.set_and_save_flavours_text flavours_text, directory, m
     @gradle = gradle_text directory, m
     matches = @gradle.match /productFlavors \{(?>[^()]|(\g<0>))*\}\n\n/
-    new_flavour_text = "productFlavors {\n#{flavours_text}}\n\n"
+    new_flavour_text = "    productFlavors {\n#{flavours_text}    }\n\n"
     if matches
       @gradle = @gradle.sub(matches[0], new_flavour_text)
     else
