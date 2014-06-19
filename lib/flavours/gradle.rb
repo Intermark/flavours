@@ -36,7 +36,7 @@ module Flavours
 
   def self.gradle_string_for_flavour flavour
     package = flavour['packageName'] ? "            packageName \"#{flavour['packageName']}\"\n" : ''
-    buildConfig = flavour['buildConfig'] ? build_config_string_for_flavour flavour : ''
+    buildConfig = flavour['buildConfig'] ? build_config_string_for_flavour(flavour) : ''
     return "        #{flavour['flavourName']} {\n#{package}#{buildConfig}        }\n"
   end
 

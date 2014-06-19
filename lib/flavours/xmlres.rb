@@ -14,6 +14,9 @@ module Flavours
       elsif k == 'stringsXML'
         create_xml_for_hash directory, m, v, 'values', 'strings', 'string', flavour_name
         puts "  - Created strings.xml for #{flavour_name}"
+      elsif k == 'settingsXML'
+        create_xml_for_hash directory, m, v, 'values', 'settings', 'item', flavour_name
+        puts "  - Created settings.xml for #{flavour_name}"
       end
     end
   end
@@ -26,8 +29,14 @@ module Flavours
     res_path = Flavours::file_path_with_folder_name(directory, res_folder_name, m, flavour_name) + "/#{res_file_name}.xml"
     xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n    <resources>\n"
     # Create Strings
-    xml_hash.each_pair do |k, v|
-      xmlString += res_string res_key_name, k, v
+    if xml_hash.kind_of?(Array)
+      xml_hash.each do |hash|
+        xmlString += res_string res_key_name, hash['name'], hash['value'], hash['type']
+      end
+    else
+      xml_hash.each_pair do |k, v|
+        xmlString += res_string res_key_name, k, v, nil
+      end
     end
     # Finish Her Off
     xmlString += '    </resources>'
@@ -37,7 +46,8 @@ module Flavours
   end
 
   # Resource String
-  def self.res_string res, name, value
-    return "        <#{res} name=\"#{name}\">#{value}</#{res}>\n"
+  def self.res_string res, name, value, type
+    type_string = type ? " type=\"#{type}\"" : ''
+    return "        <#{res} name=\"#{name}\"#{type_string}>#{value}</#{res}>\n"
   end
 end
