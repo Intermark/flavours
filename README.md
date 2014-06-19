@@ -8,7 +8,7 @@ One codebase. Multiple Google Play Store submissions with different icons, XML r
 
 ```
 $ flavours install
-$ flavours shoot
+$ flavours create
 ```
 
 **About**
