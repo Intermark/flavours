@@ -3,6 +3,7 @@ $:.push File.expand_path('../', __FILE__)
 require 'RMagick'
 include Magick
 require 'colors'
+require 'assets'
 require 'open-uri'
 
 module Flavours
@@ -31,15 +32,17 @@ module Flavours
     end
 
     # Make Assets Directory
-    make_asset_directory directory, m, name
+    drawables = ['drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
+    drawables.each do |d|
+      Flavours::make_asset_directory directory, m, name, d
+    end
 
     # Resize
     image_sizes = ['144x144', '96x96', '72x72', '48x48']
-    drawables = ['drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
     image_sizes.each_index do |i|
       size = image_sizes[i]
       drawable = drawables[i]
-      img_dir = file_path_with_drawable_name directory, drawable, m, name
+      img_dir = file_path_with_folder_name directory, drawable, m, name
       image = Image.read(img_path).first
       next unless image
       resize_image_to_directory img_dir, image, size, 'ic_launcher'
@@ -59,6 +62,7 @@ module Flavours
     image.write  directory + '/' + tag + '.png'
   end
 
+
   # Download Image from URL
   def self.path_for_downloaded_image_from_url directory, filename, url, folder
     img_path = directory + '/resources/'+ folder + '/'
@@ -69,23 +73,6 @@ module Flavours
     end
 
     return img_path + img_file_name
-  end
-
-
-  # Asset Directory Methods
-  def self.make_asset_directory directory, m, flavour_name
-    subfolders = ['drawable-hdpi','drawable-mdpi','drawable-xhdpi','drawable-xxhdpi']
-    subfolders.each do |f|
-      FileUtils::mkdir_p file_path_with_drawable_name directory, f, m, flavour_name
-    end
-  end
-
-  def self.assets_file_path directory, m, flavour_name
-    return "#{directory}/#{m}/src/#{flavour_name}/res"
-  end
-
-  def self.file_path_with_drawable_name directory, name, m, flavour_name
-    return "#{assets_file_path directory, m, flavour_name}/#{name}"
   end
 
 end

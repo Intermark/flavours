@@ -2,6 +2,8 @@ $:.push File.expand_path('../', __FILE__)
 require 'colors'
 require 'open-uri'
 require 'json'
+require 'assets'
+require 'xmlres'
 
 module Flavours
   def self.create flavours, directory, m
@@ -9,7 +11,8 @@ module Flavours
     flavours.each do |f|
       @flavour_string += gradle_string_for_flavour f
       Flavours::green "  #{f['flavourName']}" unless $nolog
-      Flavours::create_images directory, m, f unless $nolog
+      Flavours::create_images directory, m, f
+      Flavours::create_xml_resources directory, m, f
       puts
     end
 

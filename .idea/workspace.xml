@@ -22,28 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="flavours" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/flavours">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="21" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="390">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="install.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/flavours/commands/install.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="510">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="flavours.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flavours.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="225">
+            <state line="11" column="0" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -61,7 +43,16 @@
       <file leaf-file-name="images.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flavours/images.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="28" max-vertical-offset="1455">
+            <state line="73" column="0" selection-start="1981" selection-end="1981" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="1260">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xmlres.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/flavours/xmlres.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="24" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.74452555" vertical-offset="0" max-vertical-offset="720">
               <folding />
             </state>
           </provider>
@@ -103,10 +94,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gradle.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="gradle.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flavours/gradle.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="38" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.75236297" vertical-offset="412" max-vertical-offset="1125">
+            <state line="11" column="38" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assets.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/flavours/assets.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="52" selection-start="375" selection-end="395" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
               <folding />
             </state>
           </provider>
@@ -124,23 +124,25 @@
       <list>
         <option value="$PROJECT_DIR$/lib/flavours/colors.rb" />
         <option value="$PROJECT_DIR$/Rakefile" />
-        <option value="$PROJECT_DIR$/lib/flavours.rb" />
         <option value="$PROJECT_DIR$/flavours.gemspec" />
         <option value="$PROJECT_DIR$/bin/flavours" />
         <option value="$PROJECT_DIR$/lib/flavours/commands/install.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/json.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/commands.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/commands/create.rb" />
-        <option value="$PROJECT_DIR$/lib/flavours/images.rb" />
-        <option value="$PROJECT_DIR$/lib/flavours/version.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours/assets.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/gradle.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours/version.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours/images.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours/xmlres.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="874" />
+    <option name="width" value="1920" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -393,7 +395,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <frame x="0" y="22" width="1920" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -401,11 +403,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32972324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2776089" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -520,13 +522,6 @@
         <state line="3" column="0" selection-start="115" selection-end="141" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/flavours.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/flavours">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="21" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
@@ -562,9 +557,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/flavours/images.rb">
+    <entry file="file://$PROJECT_DIR$/lib/flavours/commands/create.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="28" max-vertical-offset="1455">
+        <state line="58" column="0" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="960">
           <folding />
         </state>
       </provider>
@@ -576,16 +571,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/flavours/commands/create.rb">
+    <entry file="file://$PROJECT_DIR$/lib/flavours.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="960">
+        <state line="11" column="0" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/flavours/gradle.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="38" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.75236297" vertical-offset="412" max-vertical-offset="1125">
+        <state line="11" column="38" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/flavours/assets.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="52" selection-start="375" selection-end="395" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/flavours/images.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="0" selection-start="1981" selection-end="1981" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="1260">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/flavours/xmlres.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="24" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.74452555" vertical-offset="0" max-vertical-offset="720">
           <folding />
         </state>
       </provider>
