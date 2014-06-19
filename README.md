@@ -25,7 +25,7 @@ Flavours requires your Android application use the Gradle build system.
 
 * [Installation](#installation)
 * [Set Up](#set-up)
-* [Formatting flavours.json](#formatting-flavours-json)
+* [Formatting flavours.json](#formatting-flavoursjson)
 * [Creating Flavors](#creating-flavors)
 * [The Future](#the-future)
 * [Contributing](#contributing)
