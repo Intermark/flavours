@@ -50,26 +50,36 @@ module Flavours
 
   def self.base_json_file_string
     return '{
-	"flavours" : [
-		{
-      "flavourName" : "YourFlavor",
-			"packageName" : "somePackageName",
-			"buildConfig" : {
-				"API_KEY" : "someApiKey",
-				"DEALER_COLOR" : "#E51919"
-			},
-			"iconUrl" : "https://someurl.com/image.png"
-		},
-		{
-      "flavourName" : "YourFlavor",
-			"packageName" : "somePackageName",
-			"buildConfig" : {
-				"API_KEY" : "someApiKey",
-				"DEALER_COLOR" : "#E51919"
-			},
-			"iconUrl" : "https://someurl.com/image.png"
-		}
-	]
+    "flavours": [
+        {
+            "flavourName": "YourFlavor",
+            "packageName": "somePackageName",
+            "buildConfig": {
+                "API_KEY": "someApiKey"
+            },
+            "iconUrl": "https://someurl.com/image.png",
+            "colorsXML": {
+                "primaryColor": "#E51919"
+            },
+            "stringsXML": {
+                "someString": "someValue"
+            }
+        },
+        {
+            "flavourName": "YourFlavor2",
+            "packageName": "somePackageName2",
+            "buildConfig": {
+                "API_KEY": "someApiKey"
+            },
+            "iconUrl": "https://someurl.com/image.png",
+            "colorsXML": {
+                "primaryColor": "#E51919"
+            },
+            "stringsXML": {
+                "someString": "someValue"
+            }
+        }
+    ]
 }'
   end
 
