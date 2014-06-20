@@ -52,7 +52,7 @@
       <file leaf-file-name="xmlres.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/flavours/xmlres.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="9" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.8321168" vertical-offset="0" max-vertical-offset="870">
+            <state line="43" column="24" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.67153287" vertical-offset="185" max-vertical-offset="870">
               <folding />
             </state>
           </provider>
@@ -79,7 +79,7 @@
       <file leaf-file-name="version.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flavours/version.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+            <state line="6" column="7" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
               <folding />
             </state>
           </provider>
@@ -133,8 +133,8 @@
         <option value="$PROJECT_DIR$/lib/flavours/images.rb" />
         <option value="$PROJECT_DIR$/lib/flavours.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/json.rb" />
-        <option value="$PROJECT_DIR$/lib/flavours/version.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/gradle.rb" />
+        <option value="$PROJECT_DIR$/lib/flavours/version.rb" />
         <option value="$PROJECT_DIR$/lib/flavours/xmlres.rb" />
       </list>
     </option>
@@ -585,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/flavours/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/flavours/gradle.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
@@ -599,9 +592,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/flavours/version.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="7" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/flavours/xmlres.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="9" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.8321168" vertical-offset="0" max-vertical-offset="870">
+        <state line="43" column="24" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.67153287" vertical-offset="185" max-vertical-offset="870">
           <folding />
         </state>
       </provider>
