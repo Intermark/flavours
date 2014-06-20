@@ -100,9 +100,9 @@ This section contains an array of key/value pairs that correspond to each produc
 ```
 "settingsXML": [
     {
-        "type": "item",
-        "name": "someName",
-        "value": "someValue"
+        "type": "drawable",
+        "name": "someDrawable",
+        "value": "@drawable/someDrawable"
     }
 ]
 ```
