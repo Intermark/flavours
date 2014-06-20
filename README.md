@@ -91,8 +91,25 @@ This section contains an array of key/value pairs that correspond to each produc
 * `buildConfig`
 * `colorsXML`
 * `stringsXML`
+* `settingsXML`
 
 `flavourName` is required to build that Product Flavor. However, the other options are all optional. `[buildConfig, colorsXML, stringsXML]` all house more key/values that will be be turned in to XML, or `String` properties in the `BuildConfig.java` file specific to that Flavor.
+
+`settingsXML` has a slightly different format. It's an array of objects with key/value pairs:
+
+```
+"settingsXML": [
+    {
+        "type": "item",
+        "name": "someName",
+        "value": "someValue"
+    }
+]
+```
+
+This results in a settings.xml file where the lines look like this:
+
+`<item name="NAME" type="TYPE">VALUE</item>`
 
 ## Creating Flavors
 
