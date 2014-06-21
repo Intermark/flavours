@@ -86,7 +86,7 @@ In the top-level of the JSON file, we have the main key/value pair:
 This section contains an array of key/value pairs that correspond to each product flavor you'd like to create. Here are all of the possiblities:
 
 * `flavourName`
-* `iconURL`
+* `iconURL` or `iconPath`
 * `packageName`
 * `buildConfig`
 * `colorsXML`
