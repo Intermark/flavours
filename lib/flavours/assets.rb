@@ -6,7 +6,7 @@ module Flavours
   end
 
   def self.assets_file_path directory, m, flavour_name
-    return "#{directory}/#{m}/src/#{flavour_name}/res"
+    return "#{directory}/#{m}/src/#{flavour_name.gsub(/[^0-9a-z ]/i, '')}/res"
   end
 
   def self.file_path_with_folder_name directory, folder, m, flavour_name

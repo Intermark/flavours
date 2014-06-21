@@ -16,7 +16,7 @@ module Flavours
     end
 
     # Resize Icons
-    resize_icons directory, m, flavour_hash
+    resize_icons directory, m, flavour_hash if flavour_hash['iconURL'] || flavour_hash['iconPath']
   end
 
 
@@ -26,9 +26,10 @@ module Flavours
     name = flavour_hash['flavourName']
 
     # Get Image Information
-    img_path = ''
     if flavour_hash['iconUrl']
       img_path = self.path_for_downloaded_image_from_url directory, name, flavour_hash['iconUrl'], 'icons'
+    else
+      img_path = "#{directory}/#{flavour_hash['iconPath']}"
     end
 
     # Make Assets Directory

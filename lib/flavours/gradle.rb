@@ -10,7 +10,7 @@ module Flavours
     @flavour_string = ''
     flavours.each do |f|
       @flavour_string += gradle_string_for_flavour f
-      Flavours::green "  #{f['flavourName']}" unless $nolog
+      Flavours::green "  #{f['flavourName'].gsub(/[^0-9a-z ]/i, '')}" unless $nolog
       Flavours::create_images directory, m, f
       Flavours::create_xml_resources directory, m, f
       puts
@@ -37,7 +37,7 @@ module Flavours
   def self.gradle_string_for_flavour flavour
     package = flavour['packageName'] ? "            packageName \"#{flavour['packageName']}\"\n" : ''
     buildConfig = flavour['buildConfig'] ? build_config_string_for_flavour(flavour) : ''
-    return "        #{flavour['flavourName']} {\n#{package}#{buildConfig}        }\n"
+    return "        #{flavour['flavourName'].gsub(/[^0-9a-z ]/i, '')} {\n#{package}#{buildConfig}        }\n"
   end
 
 
