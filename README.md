@@ -92,6 +92,7 @@ This section contains an array of key/value pairs that correspond to each produc
 * `colorsXML`
 * `stringsXML`
 * `settingsXML`
+* `drawables`
 
 `flavourName` is required to build that Product Flavor. However, the other options are all optional. `[buildConfig, colorsXML, stringsXML]` all house more key/values that will be be turned in to XML, or `String` properties in the `BuildConfig.java` file specific to that Flavor.
 
@@ -110,6 +111,19 @@ This section contains an array of key/value pairs that correspond to each produc
 This results in a settings.xml file where the lines look like this:
 
 `<item name="NAME" type="TYPE">VALUE</item>`
+
+`drawables` also has a slightly different format. It's an array of objects with key/value pairs like `settingsXML` is, but the pairs are slightly different.
+
+```
+"drawables": [
+    {
+        "name": "some_image.png",
+        "path": "path/relative/to/project/an_image.png"
+    }
+]
+```
+
+What this does is finds an image relative to your directory at the specified `path` key/value and then makes a copy of it to the appropriate `{flavour}/res/drawable` folder. It doesn't permanently move your file, just duplicates it in the correct spot. It puts it in a general drawable folder instead of one like drawable-hdpi. 
 
 ## Creating Flavors
 
