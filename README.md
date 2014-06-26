@@ -44,7 +44,7 @@ Run `flavours install` in your app's main directory. This will create a file, `f
 
 Here's a basic gist of how to format your `flavours.json` file:
 
-```
+```json
 {
     "flavours": [
         {
@@ -98,7 +98,7 @@ This section contains an array of key/value pairs that correspond to each produc
 
 `settingsXML` has a slightly different format. It's an array of objects with key/value pairs:
 
-```
+```json
 "settingsXML": [
     {
         "type": "drawable",
@@ -114,7 +114,7 @@ This results in a settings.xml file where the lines look like this:
 
 `drawables` also has a slightly different format. It's an array of objects with key/value pairs like `settingsXML` is, but the pairs are slightly different.
 
-```
+```json
 "drawables": [
     {
         "name": "some_image.png",
