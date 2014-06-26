@@ -48,6 +48,6 @@ module Flavours
   # Resource String
   def self.res_string res, name, value, type
     type_string = type ? " type=\"#{type}\"" : ''
-    return "        <#{res} name=\"#{name}\"#{type_string}>#{value.sub("'", "\\'")}</#{res}>\n"
+    return "        <#{res} name=\"#{name}\"#{type_string}>#{value.gsub("'", %q(\\\'))}</#{res}>\n"
   end
 end

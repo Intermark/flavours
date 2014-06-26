@@ -16,7 +16,7 @@ module Flavours
     end
 
     # Resize Icons
-    resize_icons directory, m, flavour_hash if flavour_hash['iconURL'] || flavour_hash['iconPath']
+    resize_icons directory, m, flavour_hash
 
     # Move Drawables
     move_drawables directory, m, flavour_hash if flavour_hash['drawables']
@@ -29,20 +29,23 @@ module Flavours
     name = flavour_hash['flavourName']
 
     # Get Image Information
+    img_path = ''
     if flavour_hash['iconUrl']
       img_path = self.path_for_downloaded_image_from_url directory, name, flavour_hash['iconUrl'], 'icons'
-    else
+    elsif flavour_hash['iconPath']
       img_path = "#{directory}/#{flavour_hash['iconPath']}"
+    else
+      return
     end
 
     # Make Assets Directory
-    drawables = ['drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
+    drawables = ['drawable-xxxhdpi','drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
     drawables.each do |d|
       Flavours::make_asset_directory directory, m, name, d
     end
 
     # Resize
-    image_sizes = ['144x144', '96x96', '72x72', '48x48']
+    image_sizes = ['192x192', '144x144', '96x96', '72x72', '48x48']
     image_sizes.each_index do |i|
       size = image_sizes[i]
       drawable = drawables[i]

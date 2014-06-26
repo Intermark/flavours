@@ -1,5 +1,5 @@
 module Flavours
-  VERSION = "0.0.8"
+  VERSION = "0.0.9"
 
   def self.check_for_newer_version
     unless Gem.latest_version_for('flavours').to_s == VERSION
