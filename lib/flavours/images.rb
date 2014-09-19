@@ -38,6 +38,11 @@ module Flavours
       return
     end
 
+    # Create Play Store Version (512x512)
+    play_store_path = "#{directory}/resources/icons"
+    img = Image.read(img_path).first
+    resize_image_to_directory play_store_path, img, '512x512', "#{name}-512"
+
     # Make Assets Directory
     drawables = ['drawable-xxxhdpi','drawable-xxhdpi','drawable-xhdpi','drawable-hdpi','drawable-mdpi']
     drawables.each do |d|
